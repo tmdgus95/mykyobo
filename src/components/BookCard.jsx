@@ -14,7 +14,7 @@ const BookCard = ({ book }) => {
     >
       <div className="relative">
         <img
-          className=" w-36 h-44"
+          className=" w-36 h-44 cursor-pointer"
           src={`http://192.168.0.193:8989/images/${book.image}`}
           alt="책이미지"
         />
@@ -27,8 +27,8 @@ const BookCard = ({ book }) => {
 
       <div className="ml-7 w-full">
         <div>
-          <p className="font-bold text-2xl mb-1">{book.title}</p>
-          <p className="text-subTitle text-lg mb-3 dark:text-white">
+          <p className="font-bold text-2xl mb-1 cursor-pointer">{book.title}</p>
+          <p className="text-subTitle text-lg mb-3 dark:text-white cursor-pointer">
             {book.sub}
           </p>
           <span>{book.writer}</span>

@@ -19,8 +19,8 @@ const SearchHeaer = () => {
   useEffect(() => setText(keyword || ""), [keyword]);
 
   return (
-    <header className="flex flex-col items-center py-6 border-b bg-white dark:bg-black border-header">
-      <button onClick={toggleDarkMode}>
+    <header className="relative flex flex-col items-center py-6 border-b bg-white dark:bg-black border-header dark:border-gray">
+      <button onClick={toggleDarkMode} className="absolute right-10">
         {darkMode && <FaSun className="text-white" />}
         {!darkMode && <FaMoon />}
       </button>
@@ -33,10 +33,10 @@ const SearchHeaer = () => {
             type="text"
             placeholder="검색어를 입력하세요"
             value={text}
-            className="w-11/12 border border-blue-500 rounded-full outline-blue-500 pl-5 h-10"
+            className="w-11/12 border border-input rounded-full outline-input pl-5 h-10"
             onChange={handleChange}
           />
-          <button className="absolute top-3 right-12   text-blue-500">
+          <button className="absolute top-3 right-12   text-input">
             <FaSearch />
           </button>
         </form>
