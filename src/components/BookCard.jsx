@@ -19,7 +19,7 @@ const BookCard = ({ book }) => {
                     src={`http://192.168.0.193:8989/images/${book.image}`}
                     alt="책이미지"
                 />
-                <div className="absolute bottom-0 right-0 w-15 h-8 bg-Salegreen text-white pt-1">
+                <div className="absolute bottom-0 right-0 w-15 h-6 px-2 bg-Salegreen text-xs text-white pt-1">
                     {book.ranking && `BEST ${book.ranking}`}
                 </div>
             </div>

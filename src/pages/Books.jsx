@@ -54,12 +54,13 @@ const Books = () => {
     return (
         <>
             {loading && <Loading />}
-            <ul>
+            <ul className="dark:bg-black">
                 {books.map((book) => (
                     <BookCard key={book.seq} book={book} />
                 ))}
             </ul>
             <Paging
+                className="dark:bg-black !important"
                 pageNext={pageNext}
                 pagePrev={pagePrev}
                 changePage={changePage}
