@@ -13,14 +13,17 @@ const BookCard = ({ book }) => {
             className="flex justify-start border-b py-11 px-11 "
             style={{ borderBottom: "1px solid #F4F4F4" }}
         >
-            <span>{book.ranking && book.ranking}</span>
-            <div>
+            <div className="relative">
                 <img
                     className=" w-36 h-44"
                     src={`http://192.168.0.193:8989/images/${book.image}`}
                     alt="책이미지"
                 />
+                <div className="absolute bottom-0 right-0 w-15 h-8 bg-Salegreen text-white pt-1">
+                    {book.ranking && `BEST ${book.ranking}`}
+                </div>
             </div>
+
             <div className="ml-7 w-full">
                 <div>
                     <p className="font-bold text-2xl mb-1">{book.title}</p>
