@@ -1,0 +1,95 @@
+{
+    "totalPage": 3,
+    "currentPage": 1,
+    "totalCount": 8,
+    "bookInfo": [
+        {
+            "seq": 1,
+            "title": "만일 내가 인생을 다시 산다면",
+            "subTitle": "벌써 마흔이 된 당신에게 해 주고 싶은 말들 42",
+            "image": "best1.jpg",
+            "writer": "김혜남",
+            "publisher": "메이븐",
+            "salesamont": 100000,
+            "price": 17200,
+            "rank": 1
+        },
+        {
+            "seq": 2,
+            "title": "리빙스턴 씨의 달빛서점",
+            "subTitle": "모니카 구티에레스 아르테로 장편소설",
+            "image": "moonlight.jpg",
+            "writer": "모니카 구티에레스 아르테로",
+            "publisher": "문학동네",
+            "salesamont": 90000,
+            "price": 16000,
+            "rank": 2
+        },
+        {
+            "seq": 4,
+            "title": "오늘 밤, 세계에서 이 사랑이 사라진다 해도",
+            "subTitle": "",
+            "image": "althoughTonigh.jpg",
+            "writer": "이치조 미사키",
+            "publisher": "모모",
+            "salesamont": 80000,
+            "price": 14000,
+            "rank": 3
+        },
+        {
+            "seq": 5,
+            "title": "불편한 편의점(40만부 기념 벚꽃 에디션)",
+            "subTitle": "김호연 장편소설",
+            "image": "uncomfortable.jpg",
+            "writer": "김호연",
+            "publisher": "나무옆의자",
+            "salesamont": 70000,
+            "price": 14000,
+            "rank": 4
+        },
+        {
+            "seq": 6,
+            "title": "내일, 내가 다시 좋아지고 싶어",
+            "subTitle": "지금껏 애써온 자신을 위한 19가지 공감과 위로",
+            "image": "Iwannalovemyself.jpg",
+            "writer": "황유나",
+            "publisher": "리드리드출판",
+            "salesamont": 65000,
+            "price": 16800,
+            "rank": 5
+        },
+        {
+            "seq": 3,
+            "title": "거인의 어깨 1",
+            "subTitle": "벤저민 그레이엄, 워런 버핏, 피터 린치에게 배우다",
+            "image": "giants.jpg",
+            "writer": "홍진채",
+            "publisher": "포레스트북스",
+            "salesamont": 62000,
+            "price": 21800,
+            "rank": 6
+        },
+        {
+            "seq": 8,
+            "title": "역행자",
+            "subTitle": "돈.시간.운명으로부터 완전한 자유를 얻는 7단계 인생 공략집",
+            "image": "retrogression.jpg",
+            "writer": "자청",
+            "publisher": "웅진지식하우스",
+            "salesamont": 61000,
+            "price": 17500,
+            "rank": 7
+        },
+        {
+            "seq": 9,
+            "title": "복잡한 세상을 이기는 수학의 힘",
+            "subTitle": "수학은 어떻게 삶의 문제를 해결하는가",
+            "image": "math.jpg",
+            "writer": "류쉐펑",
+            "publisher": "미디어숲",
+            "salesamont": 60500,
+            "price": 22000,
+            "rank": 8
+        }
+    ]
+}
