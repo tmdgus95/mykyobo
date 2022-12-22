@@ -53,7 +53,7 @@ export const BookDetail = () => {
                 <SlArrowRight className="mx-1 pt-1" />
                 {detailList.subcategory}
             </p>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center ">
                 <div className="text-center mt-8">
                     <h2 className="text-3xl">{book.title}</h2>
                     <p className="text-subTitle text-base font-thin mt-4">{book.sub || ""}</p>

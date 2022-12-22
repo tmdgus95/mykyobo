@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import instance from "../api/axios";
 import requests from "../api/request";
 import BookCard from "../components/BookCard";
+import Loading from "../components/Loading";
 import Paging from "../components/Paging";
 
 const Books = () => {
     const { keyword } = useParams();
     const [books, setBooks] = useState([]);
     const [page, setPage] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     const fetchDate = async () => {
         const params = {
@@ -51,6 +53,7 @@ const Books = () => {
 
     return (
         <>
+            {loading && <Loading />}
             <ul>
                 {books.map((book) => (
                     <BookCard key={book.seq} book={book} />
