@@ -101,7 +101,7 @@ export const BookDetail = () => {
               <span className="text-price "> {salePrice}원</span>
             </div>
           </div>
-          <div className="flex justify-end text-sm py-4 mt-4 mx-auto border-y border-summary ">
+          <div className="flex justify-end text-sm py-4 mt-4 mx-auto border-y border-summary dark:border-gray">
             <span className="text-gray dark:text-white">
               적립/혜택 : <span className="text-Salegreen">{point}P</span>
             </span>

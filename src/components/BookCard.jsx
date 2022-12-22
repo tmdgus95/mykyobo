@@ -10,8 +10,7 @@ const BookCard = ({ book }) => {
       onClick={() => {
         navigate(`/books/detail/${book.seq}`, { state: { book } });
       }}
-      className="flex justify-start border-b py-11 px-11 dark:text-white"
-      style={{ borderBottom: "1px solid #F4F4F4" }}
+      className="flex justify-start border-b border-summary py-11 px-11 dark:text-white dark:border-gray"
     >
       <div className="relative">
         <img
