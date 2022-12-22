@@ -7,23 +7,31 @@ import { FiPlus } from "react-icons/fi";
 import { HiMinusSm } from "react-icons/hi";
 import instance from "../api/axios";
 import requests from "../api/request";
+import Loading from "../components/Loading";
 export const BookDetail = () => {
   const [detailList, setDetailList] = useState([]);
   const {
     state: { book },
   } = useLocation();
 
+  const [loading, setLoading] = useState(false);
   const { bookId } = useParams();
 
   const navigate = useNavigate();
 
   const fetchDate = async () => {
-    const params = {
-      product: bookId,
-    };
-    const resultDetail = await instance.get(requests.fetchDetail, { params });
+    try {
+      setLoading(true);
+      const params = {
+        product: bookId,
+      };
+      const resultDetail = await instance.get(requests.fetchDetail, { params });
 
-    setDetailList(resultDetail.data.list);
+      setDetailList(resultDetail.data.list);
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -64,6 +72,7 @@ export const BookDetail = () => {
 
   return (
     <div className="w-full max-w-3xl mx-auto px-6 py-6 font-medium tracking-tighter dark:bg-black dark:text-white ">
+      {loading && <Loading />}
       <p className="text-xs flex text-gray dark:text-white ">
         {detailList.maincategory} <SlArrowRight className="mx-1 pt-1" />
         {detailList.middlecategory}
