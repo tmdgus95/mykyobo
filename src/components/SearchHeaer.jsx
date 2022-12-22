@@ -19,7 +19,7 @@ const SearchHeaer = () => {
     useEffect(() => setText(keyword || ""), [keyword]);
 
     return (
-        <header className="flex flex-col items-center py-6 border-b">
+        <header className="flex flex-col items-center py-6 border-b dark:bg-slate-200">
             <button onClick={toggleDarkMode}>
                 {darkMode && <FaSun />}
                 {!darkMode && <FaMoon />}

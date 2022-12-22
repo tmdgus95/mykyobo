@@ -13,6 +13,7 @@ const BookCard = ({ book }) => {
             className="flex justify-start border-b py-11 px-11 "
             style={{ borderBottom: "1px solid #F4F4F4" }}
         >
+            <span>{book.ranking && book.ranking}</span>
             <div>
                 <img
                     className=" w-36 h-44"
