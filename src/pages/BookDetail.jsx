@@ -62,8 +62,8 @@ export const BookDetail = () => {
     : null;
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-6 font-medium tracking-tighter mt-6 mb-10">
-      <p className="text-xs flex text-gray">
+    <div className="w-full max-w-3xl mx-auto px-6 py-6 font-medium tracking-tighter dark:bg-black dark:text-white rounded-b-2xl">
+      <p className="text-xs flex text-gray dark:text-white ">
         {detailList.maincategory} <SlArrowRight className="mx-1 pt-1" />
         {detailList.middlecategory}
         <SlArrowRight className="mx-1 pt-1" />
@@ -72,7 +72,7 @@ export const BookDetail = () => {
       <div className="flex flex-col items-center ">
         <div className="text-center mt-8">
           <h2 className="text-3xl font-bold">{book.title}</h2>
-          <p className="text-subTitle text-base font-thin mt-4">
+          <p className="text-subTitle text-base font-thin mt-4 dark:text-white">
             {book.sub || ""}
           </p>
         </div>
@@ -87,35 +87,36 @@ export const BookDetail = () => {
         <div className="w-full">
           <div className="flex justify-between">
             <span>{book.writer} 저자(글)</span>
-            <span className="text-publisher line-through text-base">
+            <span className="text-publisher line-through text-base dark:text-white">
               {salePrice}원
             </span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-gray text-xs">
+            <span className="text-gray text-xs dark:text-white">
               {detailList.publisher} {fullDate}
             </span>
             <div className="text-3xl font-bold">
-              <span className="text-Salegreen mx-1">10%</span>
-              <span className="text-price"> {price}원</span>
+              <span className="text-Salegreen mx-1 dark:text-white">10%</span>
+              <span className="text-price dark:text-white"> {price}원</span>
             </div>
           </div>
-          <div className="flex justify-end text-sm py-4 mt-4 mx-auto border-y border-summary">
-            <span className="text-gray">
-              적립/혜택 : <span className="text-Salegreen">{point}P</span>
+          <div className="flex justify-end text-sm py-4 mt-4 mx-auto border-y border-summary ">
+            <span className="text-gray dark:text-white">
+              적립/혜택 :{" "}
+              <span className="text-Salegreen dark:text-white">{point}P</span>
             </span>
           </div>
           <div className="pt-5">
             <div className="text-right">
-              <span className="text-sm mr-2 font-medium text-gray">
+              <span className="text-sm mr-2 font-medium text-gray dark:text-white">
                 총 상품 금액
               </span>{" "}
               <span className="text-3xl font-bold">{totalPrice}원</span>
             </div>
-            <div className="flex justify-between pt-5 items-center">
-              <div className="border w-40 rounded-xl flex justify-around items-center h-14 border-gray text-gray">
+            <div className="flex justify-between pb-8 pt-12 items-center">
+              <div className="border w-28.88 rounded-xl flex justify-around items-center h-14 border-slate-300 text-gray dark:text-white">
                 <button
-                  className="hover:text-black hover:scale-110"
+                  className="hover:text-black hover:scale-110 dark:hover:text-white"
                   onClick={() => {
                     if (count > 1) {
                       setCount(--count);
@@ -127,7 +128,7 @@ export const BookDetail = () => {
                 </button>
                 <span className="text-xl">{count}</span>
                 <button
-                  className="hover:text-black hover:scale-110"
+                  className="hover:text-black hover:scale-110 dark:hover:text-white"
                   onClick={() => {
                     setCount(++count);
                   }}
@@ -136,24 +137,24 @@ export const BookDetail = () => {
                   <FiPlus />{" "}
                 </button>
               </div>
-              <button className="border w-72 rounded-xl bg-price text-white h-14">
+              <button className="border w-2/3 rounded-xl bg-price text-white h-14 dark:border-none">
                 바로구매
               </button>
             </div>
           </div>
         </div>
-        <div className="w-full bg-summary rounded-2xl py-8 px-8 mt-8 mb-10 tracking-tighter mi">
+        <div className="w-full bg-summary rounded-2xl py-8 px-8 mt-8 mb-10 tracking-tighter mi dark:text-black">
           <h1 className="text-2xl font-bold pb-5 border-b border-lightgray px-4">
             책 소개
           </h1>
           <p
             dangerouslySetInnerHTML={{ __html: introduce }}
-            className="text-base font-normal pt-6 text-justify px-4"
+            className="text-base font-normal pt-6 text-justify px-4 "
           ></p>
           <p></p>
         </div>
         <button
-          className="w-full bg-price text-white rounded-2xl h-16 text-xl"
+          className="w-full bg-price text-white rounded-2xl h-16 text-xl mb-10"
           onClick={() => {
             navigate(-1);
           }}
