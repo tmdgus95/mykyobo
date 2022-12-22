@@ -49,6 +49,7 @@ const Books = () => {
 
     useEffect(() => {
         fetchDate();
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, [page]);
 
     return (
