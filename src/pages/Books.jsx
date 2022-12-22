@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import instance from "../api/axios";
@@ -21,7 +20,7 @@ const Books = () => {
         };
 
         const resultBest =
-            keyword == undefined
+            keyword === undefined
                 ? await instance.get(requests.fetchBest, { params })
                 : await instance.get(requests.fetchSearch, {
                       params: search,
@@ -57,7 +56,13 @@ const Books = () => {
                     <BookCard key={book.seq} book={book} />
                 ))}
             </ul>
-            <Paging pageNext={pageNext} pagePrev={pagePrev} changePage={changePage} page={page} />
+            <Paging
+                pageNext={pageNext}
+                pagePrev={pagePrev}
+                changePage={changePage}
+                page={page}
+                book={books.length}
+            />
         </>
     );
 };
