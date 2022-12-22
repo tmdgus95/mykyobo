@@ -1,11 +1,11 @@
-import React from "react";
-import MoonLoader from "react-spinners/MoonLoader";
+import React from 'react';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 export const Loading = () => {
     return (
-        <>
-            <MoonLoader color="#36d7b7" size={300} speedMultiplier={1} />
-        </>
+        <div className='text-center mt-10'>
+            <ClipLoader color='#36d7b7' size={400} />
+        </div>
     );
 };
 
