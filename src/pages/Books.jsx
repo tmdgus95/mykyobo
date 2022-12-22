@@ -60,7 +60,6 @@ const Books = () => {
                 ))}
             </ul>
             <Paging
-                className="dark:bg-black !important"
                 pageNext={pageNext}
                 pagePrev={pagePrev}
                 changePage={changePage}
