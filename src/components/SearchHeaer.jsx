@@ -15,7 +15,7 @@ const SearchHeaer = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (text.length < 2) {
-            alert("너무적소");
+            alert("2글자 이상 적어주세요!");
         } else {
             navigate(`/books/${text}`);
         }
