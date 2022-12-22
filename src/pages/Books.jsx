@@ -13,21 +13,27 @@ const Books = () => {
     const [loading, setLoading] = useState(false);
 
     const fetchDate = async () => {
-        const params = {
-            page: page,
-        };
-        const search = {
-            keyword: keyword,
-            page: page,
-        };
+        try {
+            setLoading(true);
+            const params = {
+                page: page,
+            };
+            const search = {
+                keyword: keyword,
+                page: page,
+            };
 
-        const resultBest =
-            keyword === undefined
-                ? await instance.get(requests.fetchBest, { params })
-                : await instance.get(requests.fetchSearch, {
-                      params: search,
-                  });
-        setBooks(resultBest.data.list);
+            const resultBest =
+                keyword === undefined
+                    ? await instance.get(requests.fetchBest, { params })
+                    : await instance.get(requests.fetchSearch, {
+                          params: search,
+                      });
+            setBooks(resultBest.data.list);
+        } catch (error) {
+            console.log(error);
+        }
+        setLoading(false);
     };
 
     const pageNext = () => {
