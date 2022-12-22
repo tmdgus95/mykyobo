@@ -1,109 +1,167 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { SlArrowRight } from "react-icons/sl";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { SlArrowRight } from "react-icons/sl";
+import { FiPlus } from "react-icons/fi";
+import { HiMinusSm } from "react-icons/hi";
 import instance from "../api/axios";
 import requests from "../api/request";
 export const BookDetail = () => {
-    const [detailList, setDetailList] = useState([]);
-    const {
-        state: { book },
-    } = useLocation();
+  const [detailList, setDetailList] = useState([]);
+  const {
+    state: { book },
+  } = useLocation();
 
-    const { bookId } = useParams();
+  const { bookId } = useParams();
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const fetchDate = async () => {
-        const params = {
-            product: bookId,
-        };
-        const resultDetail = await instance.get(requests.fetchDetail, { params });
-
-        setDetailList(resultDetail.data.list);
+  const fetchDate = async () => {
+    const params = {
+      product: bookId,
     };
+    const resultDetail = await instance.get(requests.fetchDetail, { params });
 
-    useEffect(() => {
-        fetchDate();
-        window.scrollTo(0, 0);
-    }, []);
+    setDetailList(resultDetail.data.list);
+  };
 
-    const year = new Date(detailList.publishdate).getFullYear();
-    const month = new Date(detailList.publishdate).getMonth() + 1;
-    const day = new Date(detailList.publishdate).getDate() - 1;
-    const fullDate = `${year}년 ${month}월 ${day}일`;
-    const price = detailList.price
-        ? detailList.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-        : "";
-    const salePrice = detailList.price
-        ? (detailList.price * 0.9).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-        : "";
+  useEffect(() => {
+    fetchDate();
+    // window.scrollTo(0, 0);
+  }, []);
 
-    const point = detailList.price * 0.05;
-    const introduce = detailList.introduce
-        ? detailList.introduce.replaceAll("\n", "<br/><br/>")
-        : null;
+  //   연도
+  const year = new Date(detailList.publishdate).getFullYear();
+  const month = new Date(detailList.publishdate).getMonth() + 1;
+  const day = new Date(detailList.publishdate).getDate() - 1;
+  const fullDate = `${year}년 ${month}월 ${day}일`;
+  // 콤마
+  const price = detailList.price
+    ? detailList.price
+        .toString()
+        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+    : "";
+  const salePrice = detailList.price
+    ? (detailList.price * 0.9)
+        .toString()
+        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+    : "";
 
-    return (
-        <div className="w-full max-w-3xl mx-auto px-6 font-medium tracking-tighter mt-6 mb-10">
-            <p className="text-xs flex text-gray">
-                {detailList.maincategory} <SlArrowRight className="mx-1 pt-1" />
-                {detailList.middlecategory}
-                <SlArrowRight className="mx-1 pt-1" />
-                {detailList.subcategory}
-            </p>
-            <div className="flex flex-col items-center ">
-                <div className="text-center mt-8">
-                    <h2 className="text-3xl">{book.title}</h2>
-                    <p className="text-subTitle text-base font-thin mt-4">{book.sub || ""}</p>
-                </div>
-                <div className="w-6/12 my-10">
-                    <img
-                        src={`http://192.168.0.193:8989/images/${book.image}`}
-                        alt={book.title}
-                        className="w-full"
-                        style={{ boxShadow: "0 20px 60px rgb(0 0 0 / 12%)" }}
-                    ></img>
-                </div>
-                <div className="w-full">
-                    <div className="flex justify-between">
-                        <span>{book.writer} 저자(글)</span>
-                        <span className="text-publisher line-through text-base">{salePrice}원</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                        <span className="text-gray text-xs">
-                            {detailList.publisher} {fullDate}
-                        </span>
-                        <div className="text-3xl font-bold">
-                            <span className="text-Salegreen mx-1">10%</span>
-                            <span className="text-price"> {price}원</span>
-                        </div>
-                    </div>
-                    <div className="flex justify-end text-sm py-4 mt-4 mx-auto border-y border-summary">
-                        <span className="text-gray">
-                            적립/혜택 : <span className="text-Salegreen">{point}P</span>
-                        </span>
-                    </div>
-                </div>
-                <div className="w-full bg-summary rounded-2xl py-8 px-8 mt-8 mb-10 tracking-tighter mi">
-                    <h1 className="text-2xl font-bold pb-5 border-b border-lightgray">책 소개</h1>
-                    <p
-                        dangerouslySetInnerHTML={{ __html: introduce }}
-                        className="text-base font-normal pt-6 text-justify"
-                    ></p>
-                    <p></p>
-                </div>
-                <button
-                    className="w-full bg-price text-white rounded-2xl h-16 text-xl"
-                    onClick={() => {
-                        navigate(-1);
-                    }}
-                >
-                    목록으로 돌아가기
-                </button>
-            </div>
+  const point = detailList.price * 0.05;
+  const introduce = detailList.introduce
+    ? detailList.introduce.replaceAll("\n", "<br/><br/>")
+    : null;
+
+  // 총 상품 금액
+  let [count, setCount] = useState(1);
+  let totalPrice = detailList.price
+    ? (detailList.price * count)
+        .toString()
+        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+    : null;
+
+  return (
+    <div className="w-full max-w-3xl mx-auto px-6 font-medium tracking-tighter mt-6 mb-10">
+      <p className="text-xs flex text-gray">
+        {detailList.maincategory} <SlArrowRight className="mx-1 pt-1" />
+        {detailList.middlecategory}
+        <SlArrowRight className="mx-1 pt-1" />
+        {detailList.subcategory}
+      </p>
+      <div className="flex flex-col items-center ">
+        <div className="text-center mt-8">
+          <h2 className="text-3xl font-bold">{book.title}</h2>
+          <p className="text-subTitle text-base font-thin mt-4">
+            {book.sub || ""}
+          </p>
         </div>
-    );
+        <div className="w-6/12 my-10">
+          <img
+            src={`http://192.168.0.193:8989/images/${book.image}`}
+            alt={book.title}
+            className="w-full"
+            style={{ boxShadow: "0 20px 60px rgb(0 0 0 / 12%)" }}
+          ></img>
+        </div>
+        <div className="w-full">
+          <div className="flex justify-between">
+            <span>{book.writer} 저자(글)</span>
+            <span className="text-publisher line-through text-base">
+              {salePrice}원
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-gray text-xs">
+              {detailList.publisher} {fullDate}
+            </span>
+            <div className="text-3xl font-bold">
+              <span className="text-Salegreen mx-1">10%</span>
+              <span className="text-price"> {price}원</span>
+            </div>
+          </div>
+          <div className="flex justify-end text-sm py-4 mt-4 mx-auto border-y border-summary">
+            <span className="text-gray">
+              적립/혜택 : <span className="text-Salegreen">{point}P</span>
+            </span>
+          </div>
+          <div className="pt-5">
+            <div className="text-right">
+              <span className="text-sm mr-2 font-medium text-gray">
+                총 상품 금액
+              </span>{" "}
+              <span className="text-3xl font-bold">{totalPrice}원</span>
+            </div>
+            <div className="flex justify-between pt-5 items-center">
+              <div className="border w-40 rounded-xl flex justify-around items-center h-14 border-gray text-gray">
+                <button
+                  className="hover:text-black hover:scale-110"
+                  onClick={() => {
+                    if (count > 1) {
+                      setCount(--count);
+                    }
+                  }}
+                >
+                  {" "}
+                  <HiMinusSm />{" "}
+                </button>
+                <span className="text-xl">{count}</span>
+                <button
+                  className="hover:text-black hover:scale-110"
+                  onClick={() => {
+                    setCount(++count);
+                  }}
+                >
+                  {" "}
+                  <FiPlus />{" "}
+                </button>
+              </div>
+              <button className="border w-72 rounded-xl bg-price text-white h-14">
+                바로구매
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="w-full bg-summary rounded-2xl py-8 px-8 mt-8 mb-10 tracking-tighter mi">
+          <h1 className="text-2xl font-bold pb-5 border-b border-lightgray px-4">
+            책 소개
+          </h1>
+          <p
+            dangerouslySetInnerHTML={{ __html: introduce }}
+            className="text-base font-normal pt-6 text-justify px-4"
+          ></p>
+          <p></p>
+        </div>
+        <button
+          className="w-full bg-price text-white rounded-2xl h-16 text-xl"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          목록으로 돌아가기
+        </button>
+      </div>
+    </div>
+  );
 };
 export default BookDetail;
