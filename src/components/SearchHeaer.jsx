@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useDarkMode } from "../context/DarkModeContext";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const SearchHeaer = () => {
+    const { darkMode, toggleDarkMode } = useDarkMode();
     const navigate = useNavigate();
     let { keyword } = useParams();
     const [text, setText] = useState("");
@@ -17,6 +20,10 @@ const SearchHeaer = () => {
 
     return (
         <header className="flex flex-col items-center py-6 border-b">
+            <button onClick={toggleDarkMode}>
+                {darkMode && <FaSun />}
+                {!darkMode && <FaMoon />}
+            </button>
             <Link to="/">
                 <img src="/image/kyoboLogo.png" alt="교보문고 로고" />
             </Link>
