@@ -41,12 +41,8 @@ const Books = () => {
 
     useEffect(() => {
         fetchDate();
-    }, [keyword]);
-
-    useEffect(() => {
-        fetchDate();
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    }, [page]);
+    }, [keyword, page]);
 
     return (
         <>
