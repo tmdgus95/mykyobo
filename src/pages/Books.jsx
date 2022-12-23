@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import instance from '../api/axios';
-import requests from '../api/request';
-import BookCard from '../components/BookCard';
-import Loading from '../components/Loading';
-import Paging from '../components/Paging';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import instance from "../api/axios";
+import requests from "../api/request";
+import BookCard from "../components/BookCard";
+import Loading from "../components/Loading";
+import Paging from "../components/Paging";
 
 const Books = () => {
     const { keyword } = useParams();
@@ -15,20 +15,10 @@ const Books = () => {
     const fetchDate = async () => {
         try {
             setLoading(true);
-            const params = {
-                page: page,
-            };
-            const search = {
-                keyword: keyword,
-                page: page,
-            };
-
-            const resultBest =
-                keyword === undefined
-                    ? await instance.get(requests.fetchBest, { params })
-                    : await instance.get(requests.fetchSearch, {
-                          params: search,
-                      });
+            const params = keyword ? { keyword, page } : { page };
+            const resultBest = keyword
+                ? await instance.get(requests.fetchSearch, { params })
+                : await instance.get(requests.fetchBest, { params });
             setBooks(resultBest.data.list);
         } catch (error) {
             console.log(error);
@@ -55,13 +45,13 @@ const Books = () => {
 
     useEffect(() => {
         fetchDate();
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, [page]);
 
     return (
         <>
             {loading && <Loading />}
-            <ul className='dark:bg-black'>
+            <ul className="dark:bg-black">
                 {books.map((book) => (
                     <BookCard key={book.seq} book={book} />
                 ))}
