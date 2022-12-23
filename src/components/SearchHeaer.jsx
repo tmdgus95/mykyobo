@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { BsPeopleFill } from "react-icons/bs";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
 import { FaSun, FaMoon } from "react-icons/fa";
@@ -28,27 +28,27 @@ const SearchHeaer = () => {
     useEffect(() => setText(keyword || ""), [keyword]);
 
     return (
-        <header className="relative flex flex-col items-center py-6 border-b bg-white dark:bg-black border-header dark:border-gray">
-            <button onClick={toggleDarkMode} className="absolute right-10 text-3xl">
+        <header className="relative flex flex-col items-center py-6 mt-5 border-b bg-white dark:bg-black border-header dark:border-gray">
+            <button onClick={toggleDarkMode} className="absolute right-16 text-3xl">
                 {darkMode && <FaSun className="text-red-600" />}
                 {!darkMode && <FaMoon className="text-yellow-400" />}
             </button>
-            <Link to="/books/member" className="absolute right-10 top-16 text-Salegreen text-3xl">
-                <BsPeopleFill></BsPeopleFill>
+            <Link to="/books/member" className="absolute right-4  text-gray text-3xl">
+                <GiHamburgerMenu></GiHamburgerMenu>
             </Link>
             <Link to="/">
                 <img src="/image/kyoboLogo.png" alt="교보문고 로고" />
             </Link>
             <div className="relative w-full text-center mt-6">
-                <form className="flex justify-center" onSubmit={handleSubmit}>
+                <form className="flex justify-center mb-6" onSubmit={handleSubmit}>
                     <input
                         type="text"
                         placeholder="검색어를 입력하세요"
                         value={text}
-                        className="w-11/12 border border-input rounded-full outline-input pl-5 h-10"
+                        className="w-9/12 border border-input rounded-full  outline-input pl-5 h-10"
                         onChange={handleChange}
                     />
-                    <button className="absolute top-3 right-12   text-input">
+                    <button className="absolute top-3 right-28   text-input">
                         <FaSearch />
                     </button>
                 </form>
